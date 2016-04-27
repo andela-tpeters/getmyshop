@@ -54,7 +54,8 @@ Rails.application.routes.draw do
   resources :orders, only: [] do
     collection do
       post "/address", to: "orders#address", as: :address
-      match "/summary", to: "orders#summary", as: :summary, via: [:post, :get]
+      post "/summary", to: "orders#summary", as: :summary
+      get "/summary/:address_id", to: "orders#summary", as: :summary_address
       post "/payment/", to: "orders#payment", as: :payment
       post "/payment/:type", to: "orders#post_payment", as: :post_payment
       get "/confirmation", to: "orders#confirmation", as: :confirmation
